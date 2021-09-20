@@ -9,3 +9,8 @@
 # 3 - passo
 ## corra em seu terminal o seguinte comando(Desde que tenha o docker e docker compose instalado )
 ```docker-compose up```
+
+# OBS: Na pasta github/workflows/ voc/ẽ será capaz de validar parte da infra inicial para provisionamneto da maquina de deploy
+
+# Logo serão adicionados entrypoints para automação, e analizadores de integridade ex(sonarCloud)
+
