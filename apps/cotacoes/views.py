@@ -6,13 +6,25 @@ from rest_framework.decorators import action
 import requests
 from .models import Cotacao, Wallet
 
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authtoken.models import Token
+
+
 
 class WalletViewSet(viewsets.ModelViewSet):
-    """ViewSet de operações """
+    """ViewSet das wallets """
 
     queryset = Wallet.objects.all()
     serializer_class = WalletSerializer
     http_method_names = ['get']
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        user = self.request.user
+        return serializer.save(user=user)
+
 
 
     @action(detail=False, methods=['post'])
