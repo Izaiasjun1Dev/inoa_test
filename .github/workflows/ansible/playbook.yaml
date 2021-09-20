@@ -1,0 +1,55 @@
+- hosts: provisioning-invest
+  become: yes
+
+  vars:
+    DOCKER_PACK:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+      - lsb-release
+
+    DOCKER:
+      - docker.io
+      - docker-ce
+      - docker-ce-cli 
+      - containerd.io
+
+
+  tasks: 
+    - name: Update the apt package index
+      apt:
+        update_cache: yes
+
+    - name: Instal dependecies
+      apt:
+        name: "{{DOCKER_PACK}}"
+        state: latest
+        update_cache: yes
+        force_apt_get: yes
+
+    - name: Install docker-compose
+      apt: 
+        name: docker-compose
+        state: latest
+        update_cache: yes
+
+    - name: Add Docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+
+    - name: Add Docker repository
+      apt_repository: 
+        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+        state: present
+
+    - name: Install docker
+      apt:
+        name: "{{DOCKER}}"
+        state: latest
+        update_cache: yes
+
+    
+
+
+        
