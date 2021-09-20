@@ -7,5 +7,5 @@
 ## Entre na pasta clone do projeto com
 ```cd inoa_teste```
 # 3 - passo
-## corra em seu terminal o seguinte comando(Desde que tenha o docker e docker compose intlado )
+## corra em seu terminal o seguinte comando(Desde que tenha o docker e docker compose instalado )
 ```docker-compose up```
